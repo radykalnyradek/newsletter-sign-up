@@ -20,32 +20,24 @@ body {
 
 .newsletter-sign-up {
   grid-area: sign-up;
-
-  display: grid;
-  grid-template: 320px 1fr / 1fr;
-  grid-template-areas:
-    "header-image"
-    "main";
 }
 
 .newsletter-header-image {
-  grid-area: header-image;
-
+  grid-area: header;
   min-width: 100%;
 }
 
 .newsletter-header-image img {
   width: 100%;
-  max-height: 320px;
+  max-height: 400px;
 }
 
 .newsletter-main {
   grid-area: main;
 
-  margin: 0 5%;
+  margin: 20px 5%;
   display: flex;
   flex-direction: column;
-  place-content: center;
 }
 
 .newsletter-heading {
@@ -78,19 +70,39 @@ body {
   flex-direction: column;
 }
 
-.email-label {
-  font-size: 12px;
+.form-label {
+  font-size: 0.8rem;
   color: hsl(235, 18%, 26%);
   font-weight: 700;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
+}
+
+.form-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.form-label .error-message {
+  color: hsl(4, 100%, 67%);
+  visibility: hidden;
+}
+
+.form-label .error-message.active {
+  visibility: visible;
 }
 
 .input-email {
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-radius: 8px;
   border: 1px solid hsl(231, 7%, 60%);
-  font-size: 15px;
+  font-size: 16px;
   color: hsl(231, 7%, 45%);
+}
+
+.input-email.active {
+  border: 1px solid hsl(4, 100%, 67%);
+  background-color: #ffe8e6;
 }
 
 .input-email:hover {
@@ -189,10 +201,74 @@ body {
 }
 
 @media (max-width: 359px) {
-  .newsletter-sign-up {
-    grid-template: minmax(240px, 270px) 1fr / 1fr;
+  body {
+    grid-template: auto 40px / 1fr;
     grid-template-areas:
-      "header-image"
-      "main";
+      "sign-up"
+      "footer";
+  }
+  .newsletter-main {
+    margin: 10px 5%;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    grid-template: 1fr 40px / 550px;
+    justify-content: center;
+    grid-template-areas:
+      "sign-up"
+      "footer";
+  }
+}
+
+@media (min-width: 1440px) {
+  body {
+    background-color: hsl(235, 18%, 26%);
+    grid-template: 1fr 40px / 850px;
+    grid-template-areas:
+      "sign-up"
+      "footer";
+    align-items: center;
+  }
+
+  .newsletter-sign-up {
+    background-color: hsl(0, 0%, 100%);
+    height: 600px;
+    border-radius: 30px;
+
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+    grid-template-areas: "main header";
+  }
+
+  .newsletter-main {
+    display: flex;
+    justify-content: center;
+    margin-left: 60px;
+  }
+
+  .newsletter-main h1 {
+    font-size: 48px;
+  }
+
+  .newsletter-header-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .newsletter-header-image img {
+    border-radius: 15px;
+    width: auto;
+    max-height: 550px;
+  }
+
+  .attribution {
+    color: hsl(0, 0%, 100%);
+  }
+  .attribution a {
+    color: #dcdde2;
   }
 }

@@ -22,6 +22,7 @@
         <img
           src="assets/images/illustration-sign-up-mobile.svg"
           alt="header image"
+          class="header-image"
         />
       </header>
       <main class="newsletter-main">
@@ -55,7 +56,10 @@
           </div>
         </article>
         <div class="form-container">
-          <label class="email-label" for="email">Email address</label>
+          <div class="form-label">
+            <label class="email-label" for="email">Email address</label>
+            <span class="error-message"></span>
+          </div>
           <input
             type="email"
             placeholder="email@company.com "
