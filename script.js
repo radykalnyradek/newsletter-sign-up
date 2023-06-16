@@ -1,8 +1,3 @@
-const regex = new RegExp(
-  "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$",
-  "g"
-);
-
 const emailInput = document.querySelector(".input-email");
 const submitBtn = document.querySelector(".submit-btn");
 const dismissBtn = document.querySelector(".dismiss-btn");
@@ -24,14 +19,8 @@ submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (emailInput.value === "") {
     showError("Please enter your email");
-  } else if (regex.test(emailInput.value)) {
-    successMessage.classList.add("active");
-    emailSpan.innerHTML = emailInput.value;
-
-    emailInput.classList.remove("active");
-    errorMessage.classList.remove("active");
   } else {
-    showError("Valid email required");
+    validateEmail(emailInput.value);
   }
 });
 
@@ -52,5 +41,19 @@ function changeHeaderImage() {
     headerImage.src = "assets/images/illustration-sign-up-desktop.svg";
   } else {
     headerImage.src = "assets/images/illustration-sign-up-mobile.svg";
+  }
+}
+
+function validateEmail(email) {
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const result = regex.test(email);
+  if (result) {
+    console.log(result);
+    successMessage.classList.add("active");
+    emailSpan.innerHTML = email;
+    emailInput.classList.remove("active");
+    errorMessage.classList.remove("active");
+  } else {
+    showError("Valid email required");
   }
 }
